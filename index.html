@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Mathilde Martine PAISLEY</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Bleu Nuit, Jaune Doré, Crème -->
+    <!-- Application Structure Plan: Une page unique avec une navigation fixe. La structure principale est un ensemble d'accordéons pour chaque expérience professionnelle, permettant au lecteur d'explorer le contenu sans surcharger la page. Le design est une approche moderne et numérique, utilisant des couleurs sombres avec des accents vifs pour créer un effet "bogosse". Cette architecture a été choisie pour sa clarté, son efficacité et son aspect résolument interactif. -->
+    <!-- Visualization & Content Choices: 
+        - Expériences Professionnelles -> Objectif : Rendre le CV concis et interactif. Présentation : Accordéons. Interaction : Clic pour ouvrir/fermer les détails d'un poste. Justification : Évite le défilement excessif et invite à l'exploration active.
+        - Compétences -> Objectif : Lister de manière efficace. Présentation : Liste en gras. Justification : Clarté et professionnalisme.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A192F;
+            color: #E6E6E6;
+        }
+        .text-jaune-dore { color: #FFD700; }
+        .bg-jaune-dore { background-color: #FFD700; }
+        .bg-bleu-nuit-moyen { background-color: #112240; }
+        .text-creme { color: #F5F5DC; }
+        .accordion-item-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .accordion-item-content.active {
+            max-height: 1000px;
+        }
+        .nav-link {
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-bleu-nuit-moyen/80 backdrop-blur-md shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-jaune-dore">MMPA</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#profil" class="nav-link text-creme">Profil</a>
+                <a href="#experiences" class="nav-link text-creme">Expériences</a>
+                <a href="#competences" class="nav-link text-creme">Compétences</a>
+                <a href="#formations" class="nav-link text-creme">Formations</a>
+                <a href="#complementaires" class="nav-link text-creme">À propos</a>
+            </div>
+            <a href="mailto:mathilde.martine.paisley@gmail.com" class="hidden md:block bg-jaune-dore text-bleu-nuit-moyen px-4 py-2 rounded-md hover:opacity-80 transition">Contact</a>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        
+        <section class="text-center py-16">
+            <h1 class="text-4xl md:text-6xl font-bold text-creme">Mathilde Martine PAISLEY</h1>
+            <p class="mt-4 text-lg md:text-xl text-jaune-dore font-medium">Partenaire Stratégique RH, Paie & Transformation Digitale</p>
+            <div class="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-creme text-sm">
+                <span>&#9742; 06 85 90 08 87</span>
+                <span>&#9993; mathilde.martine.paisley@gmail.com</span>
+                <span>&#127968; 92110 Clichy, France</span>
+            </div>
+        </section>
+
+        <section id="profil" class="py-16">
+            <h2 class="text-3xl font-bold text-center text-jaune-dore mb-8">Profil</h2>
+            <div class="max-w-4xl mx-auto text-creme leading-relaxed space-y-4">
+                <p>Forte de plus de vingt ans d’expérience en Ressources Humaines, je me positionne aujourd'hui comme une **Partenaire Stratégique RH, Paie & Transformation Digitale**.</p>
+                <p>J’accompagne les organisations dans la mise en œuvre opérationnelle et réglementaire de leurs projets, en garantissant que la paie et les enjeux RH soient pleinement intégrés par les équipes et les intégrateurs.</p>
+                <p>À la croisée du métier RH, de l'expertise réglementaire et de la transformation digitale, je crée le lien entre les différents acteurs pour sécuriser les projets. Mon objectif est d’assurer que les solutions répondent réellement aux besoins du terrain et soutiennent la performance durable des équipes.</p>
+            </div>
+        </section>
+
+        <section id="experiences" class="py-16">
+            <h2 class="text-3xl font-bold text-center text-jaune-dore mb-8">Expériences Professionnelles</h2>
+            <div class="space-y-6 max-w-4xl mx-auto">
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-dore transition-colors duration-300 cursor-pointer">
+                    <button class="accordion-header w-full text-left">
+                        <div class="flex justify-between items-center text-creme">
+                            <div>
+                                <h3 class="font-bold text-xl">Référente Fonctionnelle SIRH</h3>
+                                <p class="text-sm text-creme opacity-70">Nexpublica - Décembre 2024 – Mai 2025</p>
+                            </div>
+                            <span class="text-xl transform transition-transform duration-300">+</span>
+                        </div>
+                    </button>
+                    <div class="accordion-item-content pt-4">
+                        <div class="text-creme space-y-4">
+                            <p class="italic">Rôle : Assurer l'adéquation entre les besoins des clients et les fonctionnalités de l'outil Chronotime.</p>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>**Analyse & Spécifications :** Accompagnement des clients dans la définition de leurs besoins et rédaction de spécifications fonctionnelles détaillées.</li>
+                                <li>**Coordination Projet :** Collaboration étroite avec les équipes projet (MOA, MOE, développeurs) pour garantir une intégration réussie et le respect des attentes clients.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-dore transition-colors duration-300 cursor-pointer">
+                    <button class="accordion-header w-full text-left">
+                        <div class="flex justify-between items-center text-creme">
+                            <div>
+                                <h3 class="font-bold text-xl">COORDONNATRICE SIRH / CHEFFE DE PROJET FONCTIONNELLE</h3>
+                                <p class="text-sm text-creme opacity-70">Groupe Ponticelli Frères - Septembre 2024 – Novembre 2024</p>
+                            </div>
+                            <span class="text-xl transform transition-transform duration-300">+</span>
+                        </div>
+                    </button>
+                    <div class="accordion-item-content pt-4">
+                        <div class="text-creme space-y-4">
+                            <p class="italic">Rôle : Coordonner la finalisation d'un projet de transformation SIRH, en faisant le lien entre les équipes métier et l'intégrateur.</p>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>**Coordination de la Recette :** Supervision de l'équipe de consultants en charge de la recette fonctionnelle (planification, rédaction des scripts, suivi des tests) en vue de la mise en production.</li>
+                                <li>**Pilotage de Projet :** Participation active aux réunions de pilotage (COPROJ/COOPIR) et coordination inter-pôles (RH, DSI) pour formaliser les besoins métiers sur SAP SuccessFactors.</li>
+                                <li>**Support & Accompagnement :** Fournir un support utilisateur sur les modules SAP SuccessFactors EC & Time durant les phases de tests.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-dore transition-colors duration-300 cursor-pointer">
+                    <button class="accordion-header w-full text-left">
+                        <div class="flex justify-between items-center text-creme">
+                            <div>
+                                <h3 class="font-bold text-xl">Consultante Fonctionnelle Paie / AMOA SIRH</h3>
+                                <p class="text-sm text-creme opacity-70">CGI - Janvier 2023 - Juin 2024</p>
+                            </div>
+                            <span class="text-xl transform transition-transform duration-300">+</span>
+                        </div>
+                    </button>
+                    <div class="accordion-item-content pt-4">
+                        <div class="text-creme space-y-4">
+                            <p class="italic">Rôle : Accompagner deux clients dans la sécurisation et la modernisation de leurs processus Paie et SIRH (notamment sur HR Access).</p>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>**Projet 1 :** Actualisation et validation d'un "livre blanc" réglementaire sur HR Access. Audit des rubriques de paie, recueil des besoins et accompagnement au changement.</li>
+                                <li>**Projet 2 :** Formation des agents utilisateurs à l'outil HR Access. Création de scripts et scénarios de tests pour la validation de la DSN. Gestion du support et suivi des anomalies jusqu'à la mise en production.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-dore transition-colors duration-300 cursor-pointer">
+                    <button class="accordion-header w-full text-left">
+                        <div class="flex justify-between items-center text-creme">
+                            <div>
+                                <h3 class="font-bold text-xl">CHARGÉE RH – COORDINATION PAIE & ADMIN. RH</h3>
+                                <p class="text-sm text-creme opacity-70">Talent Solutions - Juillet 2022 – Décembre 2022</p>
+                            </div>
+                            <span class="text-xl transform transition-transform duration-300">+</span>
+                        </div>
+                    </button>
+                    <div class="accordion-item-content pt-4">
+                        <div class="text-creme space-y-4">
+                            <p class="italic">Rôle : Responsable de la gestion de la paie et de l'administration du personnel pour plusieurs entités.</p>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>**Optimisation des Processus :** Mise en œuvre de solutions pour améliorer l'efficacité des processus de paie et administratifs.</li>
+                                <li>**Encadrement & Mentorat :** Transfert de compétences et mise en place de pratiques de mentorat pour les équipes.</li>
+                                <li>**Gestion de la Paie :** Gestion complète de la paie pour 4 entités et 350 collaborateurs sur Cegid PeopleNet GA et VSA.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-dore transition-colors duration-300 cursor-pointer">
+                    <button class="accordion-header w-full text-left">
+                        <div class="flex justify-between items-center text-creme">
+                            <div>
+                                <h3 class="font-bold text-xl">CONSULTANTE PAIE SIRH</h3>
+                                <p class="text-sm text-creme opacity-70">Epi-Use France - Novembre 2018 – Mars 2022</p>
+                            </div>
+                            <span class="text-xl transform transition-transform duration-300">+</span>
+                        </div>
+                    </button>
+                    <div class="accordion-item-content pt-4">
+                        <div class="text-creme space-y-4">
+                            <p class="italic">Rôle : Accompagner un client dans la création de son Centre de Services Business (CSB).</p>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>**Structuration des Connaissances :** Reprise et mise à jour des procédures de paie pour plus de 20 sites. Élaboration d'un livre blanc consolidant les pratiques standard.</li>
+                                <li>**Conduite du Changement :** Rédaction de guides utilisateurs et animation d'ateliers.</li>
+                                <li>**Formation & Transfert de Compétences :** Conception et animation de formations pour les gestionnaires et responsables locaux.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-dore transition-colors duration-300 cursor-pointer">
+                    <button class="accordion-header w-full text-left">
+                        <div class="flex justify-between items-center text-creme">
+                            <div>
+                                <h3 class="font-bold text-xl">CHARGÉE DE PAIE</h3>
+                                <p class="text-sm text-creme opacity-70">Multi-sociétés - Avril 2008 – Octobre 2018</p>
+                            </div>
+                            <span class="text-xl transform transition-transform duration-300">+</span>
+                        </div>
+                    </button>
+                    <div class="accordion-item-content pt-4">
+                        <div class="text-creme space-y-4">
+                            <p class="italic">Rôle : Gestion globale de la paie et de l'administration du personnel, avec une forte expertise sur les spécificités de nombreuses conventions collectives.</p>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>**Gestion Opérationnelle de la Paie :** Prise en charge complète de la paie pour des effectifs allant jusqu'à 1200 collaborateurs, avec une optimisation continue des processus.</li>
+                                <li>**Conformité Réglementaire :** Veille sociale et juridique constante pour garantir la conformité des pratiques de paie.</li>
+                                <li>**Administration du Personnel :** Gestion intégrale des dossiers administratifs.</li>
+                                <li>**Environnements techniques :** Expérience sur SAP, ADP Décidium, ainsi que des outils internes.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-dore transition-colors duration-300 cursor-pointer">
+                    <button class="accordion-header w-full text-left">
+                        <div class="flex justify-between items-center text-creme">
+                            <div>
+                                <h3 class="font-bold text-xl">DIRECTRICE DE CENTRE DE PROFIT</h3>
+                                <p class="text-sm text-creme opacity-70">KFC - Avril 2002 – Mars 2004</p>
+                            </div>
+                            <span class="text-xl transform transition-transform duration-300">+</span>
+                        </div>
+                    </button>
+                    <div class="accordion-item-content pt-4">
+                        <div class="text-creme space-y-4">
+                            <p class="italic">Rôle : Piloter la performance opérationnelle et commerciale d'un centre de profit.</p>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>**Management et Leadership :** Encadrement et formation d'une équipe de 70 personnes pour assurer la performance.</li>
+                                <li>**Gestion RH :** Participation active aux campagnes de recrutement et au processus d'intégration.</li>
+                                <li>**Pilotage d'Activité :** Responsabilité du chiffre d’affaires et mise en place de procédures d'optimisation.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="competences" class="py-16">
+            <h2 class="text-3xl font-bold text-center text-jaune-dore mb-8">Compétences</h2>
+            <div class="max-w-4xl mx-auto space-y-12">
+                <div>
+                    <h3 class="font-semibold text-lg text-jaune-dore mb-4">Outils SIRH / Paie & Gestion de Projet</h3>
+                    <div class="flex flex-wrap gap-2 text-sm">
+                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">SAP SuccessFactors</span>
+                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Pléiade e5 / For You</span>
+                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">HR Access</span>
+                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Chronotime</span>
+                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Cegid</span>
+                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Workday</span>
+                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">SAP HR</span>
+                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">ADP Décidium</span>
+                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">AS400</span>
+                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Spaietacle</span>
+                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Jira</span>
+                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Trello</span>
+                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Monday.com</span>
+                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Suite Office 365</span>
+                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Environnement Google</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg text-jaune-dore mb-4">Compétences Transversales</h3>
+                    <ul class="list-disc list-inside text-creme space-y-2">
+                        <li>**Gestion de projet :** Recette, Mise en production, Support utilisateurs, Animation d’ateliers, Conduite du changement.</li>
+                        <li>**Pilotage RH :** Coordination d'équipes multisites, Optimisation des processus, Gestion de la relation client/prestataire, Veille sociale et juridique.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="formations" class="py-16">
+            <h2 class="text-3xl font-bold text-center text-jaune-dore mb-8">Formations & Certifications</h2>
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="bg-bleu-nuit-moyen p-6 rounded-lg shadow-md border border-bleu-nuit-moyen">
+                    <h3 class="font-semibold text-creme">Titre certifié "Expert en Stratégie Digitale" (Niveau 7)</h3>
+                    <p class="text-sm text-creme opacity-70">Obtention : Mars 2025</p>
+                </div>
+                <div class="bg-bleu-nuit-moyen p-6 rounded-lg shadow-md border border-bleu-nuit-moyen">
+                    <h3 class="font-semibold text-creme">Titre certifié "Manager Stratégique RH" (Niveau 7)</h3>
+                    <p class="text-sm text-creme opacity-70">Décembre 2023 - ESGRH Paris</p>
+                </div>
+                <div class="bg-bleu-nuit-moyen p-6 rounded-lg shadow-md border border-bleu-nuit-moyen">
+                    <h3 class="font-semibold text-creme">Formation Paie, Droit Social et Administration du Personnel</h3>
+                    <p class="text-sm text-creme opacity-70">2013-2014 - M2i Paris</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="complementaires" class="py-16">
+            <h2 class="text-3xl font-bold text-center text-jaune-dore mb-8">Informations Complémentaires</h2>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10">
+                <div class="bg-bleu-nuit-moyen p-8 rounded-lg shadow-lg border border-bleu-nuit-moyen">
+                    <h3 class="font-semibold text-lg text-jaune-dore mb-4">Langues & Passions</h3>
+                    <div class="space-y-3 text-creme">
+                        <p class="mb-2"><strong class="text-creme">Langues :</strong> Français (langue maternelle), Anglais (A2 - compréhension technique).</p>
+                        <p>&#127850; <span class="font-medium">Création Gourmande :</span> Organisation d'événements (traiteur, amuse-bouches) et pâtisserie spécialisée.</p>
+                        <p>&#127929; <span class="font-medium">Harmonie Musicale :</span> Musique classique (piano), afro-antillaise (rétro 80's) et variété.</p>
+                        <p>&#128131; <span class="font-medium">Danse & Bien-être :</span> Pratique de la danse (zouk, biguine, gwo ka, rock) et sport.</p>
+                        <p>&#128187; <span class="font-medium">Innovation Connectée :</span> Veille technologique, montage de PC et initiation au codage (HTML, CSS, JavaScript).</p>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center bg-bleu-nuit-moyen p-8 rounded-lg shadow-lg">
+                    <p class="text-center text-creme italic leading-loose">"L'équilibre entre la rigueur professionnelle et la créativité personnelle est la clé d'une performance durable et épanouie."</p>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="bg-bleu-nuit-moyen text-white py-6">
+        <div class="container mx-auto px-6 text-center text-sm">
+            <p>&copy; 2025 Mathilde Martine PAISLEY. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('a[href^="#"]');
+            navLinks.forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                const content = item.querySelector('.accordion-item-content');
+                const icon = header.querySelector('span');
+
+                header.addEventListener('click', () => {
+                    const isActive = content.classList.contains('active');
+
+                    accordionItems.forEach(otherItem => {
+                        const otherContent = otherItem.querySelector('.accordion-item-content');
+                        const otherIcon = otherItem.querySelector('.accordion-header span');
+                        if (otherContent.classList.contains('active')) {
+                            otherContent.classList.remove('active');
+                            otherIcon.style.transform = 'rotate(0deg)';
+                        }
+                    });
+
+                    if (!isActive) {
+                        content.classList.add('active');
+                        icon.style.transform = 'rotate(45deg)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
