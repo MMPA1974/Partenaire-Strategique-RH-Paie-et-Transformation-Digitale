@@ -15,9 +15,10 @@
             background-color: #0A192F;
             color: #E6E6E6;
         }
-        .text-jaune-bronze { color: #B8860B; }
-        .bg-jaune-bronze { background-color: #B8860B; }
-        .text-black-on-bronze { color: #000000; }
+        /* Nouvelle couleur jaune plus lumineuse */
+        .text-jaune-or { color: #FFD700; }
+        .bg-jaune-or { background-color: #FFD700; }
+        .text-black-on-jaune { color: #000000; }
         .bg-bleu-nuit-moyen { background-color: #112240; }
         .text-creme { color: #F5F5DC; }
         .accordion-item-content {
@@ -31,7 +32,7 @@
         .nav-link {
             transition: color 0.3s, text-shadow 0.3s, transform 0.3s;
         }
-        /* Nouvelle lueur multicolore pour les liens de navigation au survol */
+        /* Lueur multicolore pour les liens de navigation au survol */
         .nav-link:hover {
             color: #F5F5DC;
             transform: scale(1.1);
@@ -39,25 +40,21 @@
                          0 0 16px rgba(255, 20, 147, 0.8), 
                          0 0 24px rgba(139, 0, 0, 0.7); 
         }
-        /* Style pour l'encadré "Profil" avec une lueur plus brillante et un effet de survol */
+        /* Style pour l'encadré "Profil" avec une lueur subtile et un effet de survol */
         .profil-box {
             position: relative;
             z-index: 10;
             padding: 2.5rem;
             border-radius: 1rem;
             background: #112240;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6), 
-                        0 0 30px rgba(255, 165, 0, 0.5), 
-                        0 0 50px rgba(255, 105, 180, 0.4), 
-                        inset 0 0 15px rgba(255, 228, 196, 0.6);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.4), 
+                        inset 0 0 10px rgba(255, 228, 196, 0.5);
             transition: transform 0.5s, box-shadow 0.5s;
         }
         .profil-box:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 20px rgba(255, 230, 150, 0.8), 
-                        0 0 40px rgba(255, 180, 50, 0.7), 
-                        0 0 70px rgba(255, 105, 180, 0.6), 
-                        inset 0 0 20px rgba(255, 240, 210, 0.8);
+            transform: scale(1.01);
+            box-shadow: 0 0 15px rgba(255, 230, 150, 0.6), 
+                        inset 0 0 15px rgba(255, 240, 210, 0.6);
         }
         /* Style des badges de compétences avec un effet de dégradé animé au survol */
         .skill-badge {
@@ -89,6 +86,30 @@
             100% { background-position: 0% 50%; }
         }
 
+        /* Styles pour les badges circulaires des compétences transversales */
+        .transversal-skill-badge {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.5s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .transversal-skill-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #FF69B4, #FF1493, #B22222, #C71585);
+            background-size: 200% 200%;
+            animation: color-shift 3s ease-in-out infinite;
+        }
+
         /* Classes de couleurs de base (statiques) pour les badges */
         .bg-nuance-1 { background-color: #FF4500; }
         .bg-nuance-2 { background-color: #FF8C00; }
@@ -117,39 +138,119 @@
             opacity: 1;
             visibility: visible;
         }
+
+        /* Styles pour la modale */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #112240;
+            margin: 15% auto;
+            padding: 2rem;
+            border: 1px solid #FFD700;
+            border-radius: 1rem;
+            width: 80%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        /* Styles des badges de contact */
+        .contact-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #112240;
+            border: 1px solid #FFD700;
+            border-radius: 2rem;
+            color: #FFD700;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        .contact-badge:hover {
+            background-color: #FFD700;
+            color: #0A192F;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+        }
     </style>
 </head>
 <body class="antialiased">
 
     <header class="bg-bleu-nuit-moyen/80 backdrop-blur-md shadow-lg sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-xl font-bold text-jaune-bronze">MMPA</div>
-            <div class="hidden md:flex space-x-8 text-lg md:text-xl lg:text-2xl font-semibold">
+        <nav class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            <div class="text-xl md:text-2xl font-bold text-jaune-or">Mathilde Martine PAISLEY</div>
+            <div class="hidden md:flex space-x-8 text-lg lg:text-xl font-semibold">
                 <a href="#profil" class="nav-link text-creme">Profil</a>
                 <a href="#experiences" class="nav-link text-creme">Expériences</a>
                 <a href="#competences" class="nav-link text-creme">Compétences</a>
                 <a href="#formations" class="nav-link text-creme">Formations</a>
                 <a href="#complementaires" class="nav-link text-creme">À propos</a>
             </div>
-            <a href="mailto:mathilde.martine.paisley@gmail.com" class="hidden md:block bg-jaune-bronze text-bleu-nuit-moyen px-4 py-2 rounded-md hover:opacity-80 transition">Contact</a>
+            <a href="mailto:mathilde.martine.paisley@gmail.com" class="hidden md:block bg-jaune-or text-bleu-nuit-moyen px-4 py-2 rounded-md hover:opacity-80 transition">Contact</a>
         </nav>
     </header>
 
-    <main class="container mx-auto px-6 py-12">
+    <main class="container mx-auto px-4 sm:px-6 py-12">
         
         <section class="text-center py-16">
-            <h1 class="text-4xl md:text-6xl font-bold text-creme">Mathilde Martine PAISLEY</h1>
-            <p class="mt-4 text-lg md:text-xl text-jaune-bronze font-medium">Partenaire Stratégique RH, Paie & Transformation Digitale</p>
-            <div class="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-creme text-sm">
-                <span>&#9742; 06 85 90 08 87</span>
-                <span>&#9993; mathilde.martine.paisley@gmail.com</span>
-                <span>&#127968; 92110 Clichy, France</span>
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-jaune-or">Partenaire Stratégique RH, Paie & Transformation Digitale</h1>
+            <p class="mt-4 text-lg md:text-xl text-creme font-medium">Mathilde Martine PAISLEY</p>
+            
+            <!-- Badges de contact interactifs -->
+            <div class="mt-8 flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-creme">
+                <a href="tel:0685900887" class="contact-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 1.867c.394.992-.14 2.126-1.129 2.522l-.634.254a1 1 0 00-.594 1.157l1.012 2.531a1 1 0 001.037.625h1.226a1 1 0 001.037-.625l1.012-2.531a1 1 0 00-.594-1.157l-.634-.254c-.989-.396-1.523-1.53-.414-2.522l.74-1.867A1 1 0 0115.847 2H18a1 1 0 011 1v14a1 1 0 01-1 1H2a1 1 0 01-1-1V3z" />
+                    </svg>
+                    06 85 90 08 87
+                </a>
+                <a href="mailto:mathilde.martine.paisley@gmail.com" class="contact-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg>
+                    Email
+                </a>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=92110+Clichy,+France" target="_blank" class="contact-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                    </svg>
+                    92110 Clichy
+                </a>
             </div>
         </section>
 
         <section id="profil" class="py-16">
-            <div class="max-w-4xl mx-auto text-creme leading-relaxed space-y-4 profil-box">
-                <h2 class="text-2xl md:text-3xl font-bold text-center text-jaune-bronze mb-6">Qui je suis et ce que je vous propose</h2>
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 text-creme leading-relaxed space-y-4 profil-box">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-jaune-or mb-6">Ma Proposition de Valeur & Mon Expertise</h2>
                 <p>Forte de plus de vingt ans d’expérience en Ressources Humaines, je me positionne aujourd'hui comme une **Partenaire Stratégique RH, Paie & Transformation Digitale**.</p>
                 <p>J’accompagne les organisations dans la mise en œuvre opérationnelle et réglementaire de leurs projets, en garantissant que la paie et les enjeux RH soient pleinement intégrés par les équipes et les intégrateurs.</p>
                 <p>À la croisée du métier RH, de l'expertise réglementaire et de la transformation digitale, je crée le lien entre les différents acteurs pour sécuriser les projets. Mon objectif est d’assurer que les solutions répondent réellement aux besoins du terrain et soutiennent la performance durable des équipes.</p>
@@ -157,9 +258,9 @@
         </section>
 
         <section id="experiences" class="py-16">
-            <h2 class="text-3xl font-bold text-center text-jaune-bronze mb-8">Expériences Professionnelles</h2>
-            <div class="space-y-6 max-w-4xl mx-auto">
-                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-bronze transition-colors duration-300 cursor-pointer">
+            <h2 class="text-3xl font-bold text-center text-jaune-or mb-8">Expériences Professionnelles</h2>
+            <div class="space-y-6 max-w-5xl mx-auto px-4 sm:px-6">
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-or transition-colors duration-300 cursor-pointer">
                     <button class="accordion-header w-full text-left">
                         <div class="flex justify-between items-center text-creme">
                             <div>
@@ -179,7 +280,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-bronze transition-colors duration-300 cursor-pointer">
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-or transition-colors duration-300 cursor-pointer">
                     <button class="accordion-header w-full text-left">
                         <div class="flex justify-between items-center text-creme">
                             <div>
@@ -200,7 +301,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-bronze transition-colors duration-300 cursor-pointer">
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-or transition-colors duration-300 cursor-pointer">
                     <button class="accordion-header w-full text-left">
                         <div class="flex justify-between items-center text-creme">
                             <div>
@@ -220,7 +321,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-bronze transition-colors duration-300 cursor-pointer">
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-or transition-colors duration-300 cursor-pointer">
                     <button class="accordion-header w-full text-left">
                         <div class="flex justify-between items-center text-creme">
                             <div>
@@ -241,7 +342,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-bronze transition-colors duration-300 cursor-pointer">
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-or transition-colors duration-300 cursor-pointer">
                     <button class="accordion-header w-full text-left">
                         <div class="flex justify-between items-center text-creme">
                             <div>
@@ -262,7 +363,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-bronze transition-colors duration-300 cursor-pointer">
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-or transition-colors duration-300 cursor-pointer">
                     <button class="accordion-header w-full text-left">
                         <div class="flex justify-between items-center text-creme">
                             <div>
@@ -284,7 +385,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-bronze transition-colors duration-300 cursor-pointer">
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-or transition-colors duration-300 cursor-pointer">
                     <button class="accordion-header w-full text-left">
                         <div class="flex justify-between items-center text-creme">
                             <div>
@@ -309,10 +410,10 @@
         </section>
 
         <section id="competences" class="py-16">
-            <h2 class="text-3xl font-bold text-center text-jaune-bronze mb-8">Compétences</h2>
-            <div class="max-w-4xl mx-auto space-y-12">
+            <h2 class="text-3xl font-bold text-center text-jaune-or mb-8">Compétences</h2>
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 space-y-12">
                 <div>
-                    <h3 class="font-semibold text-lg text-jaune-bronze mb-4">Outils SIRH / Paie & Gestion de Projet</h3>
+                    <h3 class="font-semibold text-lg text-jaune-or mb-4">Outils SIRH / Paie & Gestion de Projet</h3>
                     <div class="flex flex-wrap justify-center gap-4 text-sm">
                         <span class="skill-badge bg-nuance-1" data-skill="SAP SuccessFactors">
                             SAP SuccessFactors
@@ -377,18 +478,22 @@
                     </div>
                 </div>
                 <div>
-                    <h3 class="font-semibold text-lg text-jaune-bronze mb-4">Compétences Transversales</h3>
-                    <ul class="list-disc list-inside text-creme space-y-2">
-                        <li>**Gestion de projet :** Recette, Mise en production, Support utilisateurs, Animation d’ateliers, Conduite du changement.</li>
-                        <li>**Pilotage RH :** Coordination d'équipes multisites, Optimisation des processus, Gestion de la relation client/prestataire, Veille sociale et juridique.</li>
-                    </ul>
+                    <h3 class="font-semibold text-lg text-jaune-or mb-4">Compétences Transversales</h3>
+                    <div class="flex flex-wrap justify-center gap-6">
+                        <div class="transversal-skill-badge bg-nuance-1" data-title="Gestion de projet" data-description="Recette, Mise en production, Support utilisateurs, Animation d’ateliers, Conduite du changement.">
+                            Gestion de projet
+                        </div>
+                        <div class="transversal-skill-badge bg-nuance-2" data-title="Pilotage RH" data-description="Coordination d'équipes multisites, Optimisation des processus, Gestion de la relation client/prestataire, Veille sociale et juridique.">
+                            Pilotage RH
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="formations" class="py-16">
-            <h2 class="text-3xl font-bold text-center text-jaune-bronze mb-8">Formations & Certifications</h2>
-            <div class="max-w-3xl mx-auto space-y-6">
+            <h2 class="text-3xl font-bold text-center text-jaune-or mb-8">Formations & Certifications</h2>
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
                 <div class="bg-bleu-nuit-moyen p-6 rounded-lg shadow-md border border-bleu-nuit-moyen">
                     <h3 class="font-semibold text-creme">Titre certifié "Expert en Stratégie Digitale" (Niveau 7)</h3>
                     <p class="text-sm text-creme opacity-70">Obtention : Mars 2025</p>
@@ -402,14 +507,13 @@
                     <p class="text-sm text-creme opacity-70">2013-2014 - M2i Paris</p>
                 </div>
             </div>
-        </div>
         </section>
         
         <section id="complementaires" class="py-16">
-            <h2 class="text-3xl font-bold text-center text-jaune-bronze mb-8">Informations Complémentaires</h2>
-            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10">
+            <h2 class="text-3xl font-bold text-center text-jaune-or mb-8">Informations Complémentaires</h2>
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-10">
                 <div class="bg-bleu-nuit-moyen p-8 rounded-lg shadow-lg border border-bleu-nuit-moyen">
-                    <h3 class="font-semibold text-lg text-jaune-bronze mb-4">Langues & Passions</h3>
+                    <h3 class="font-semibold text-lg text-jaune-or mb-4">Langues & Passions</h3>
                     <div class="space-y-3 text-creme">
                         <p class="mb-2"><strong class="text-creme">Langues :</strong> Français (langue maternelle), Anglais (A2 - compréhension technique).</p>
                         <p>&#127850; <span class="font-medium">Création Gourmande :</span> Organisation d'événements (traiteur, amuse-bouches) et pâtisserie spécialisée.</p>
@@ -425,6 +529,14 @@
         </section>
         
     </main>
+
+    <div id="skillModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modalTitle" class="text-xl font-bold text-jaune-or mb-4"></h2>
+            <p id="modalDescription" class="text-creme"></p>
+        </div>
+    </div>
 
     <footer class="bg-bleu-nuit-moyen text-white py-6">
         <div class="container mx-auto px-6 text-center text-sm">
@@ -469,6 +581,33 @@
                         icon.style.transform = 'rotate(45deg)';
                     }
                 });
+            });
+
+            // Modal functionality for transversal skills
+            const modal = document.getElementById('skillModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const closeButton = document.querySelector('.close-button');
+            const transversalBadges = document.querySelectorAll('.transversal-skill-badge');
+
+            transversalBadges.forEach(badge => {
+                badge.addEventListener('click', function () {
+                    const title = this.getAttribute('data-title');
+                    const description = this.getAttribute('data-description');
+                    modalTitle.textContent = title;
+                    modalDescription.textContent = description;
+                    modal.style.display = 'flex';
+                });
+            });
+
+            closeButton.addEventListener('click', function () {
+                modal.style.display = 'none';
+            });
+
+            window.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
             });
         });
     </script>
