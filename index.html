@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV Mathilde Martine PAISLEY</title>
+    <!-- Nom du fichier : planning.html -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,64 +31,75 @@
         .nav-link {
             transition: color 0.3s, text-shadow 0.3s, transform 0.3s;
         }
-        /* New glow effect for nav links on hover */
+        /* Nouvelle lueur multicolore pour les liens de navigation au survol */
         .nav-link:hover {
             color: #F5F5DC;
             transform: scale(1.1);
-            text-shadow: 0 0 5px rgba(255, 105, 180, 0.7), 
-                         0 0 10px rgba(255, 20, 147, 0.6), 
-                         0 0 15px rgba(139, 0, 0, 0.5); 
+            text-shadow: 0 0 8px rgba(255, 105, 180, 0.9), 
+                         0 0 16px rgba(255, 20, 147, 0.8), 
+                         0 0 24px rgba(139, 0, 0, 0.7); 
         }
-        /* Style for the "Profil" box with a brighter glow and hover effect */
+        /* Style pour l'encadré "Profil" avec une lueur plus brillante et un effet de survol */
         .profil-box {
             position: relative;
             z-index: 10;
             padding: 2.5rem;
             border-radius: 1rem;
             background: #112240;
-            box-shadow: 0 0 10px rgba(255, 165, 0, 0.5), 
-                        0 0 20px rgba(255, 215, 0, 0.4), 
-                        0 0 30px rgba(255, 105, 180, 0.3), 
-                        inset 0 0 10px rgba(255, 228, 196, 0.5);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6), 
+                        0 0 30px rgba(255, 165, 0, 0.5), 
+                        0 0 50px rgba(255, 105, 180, 0.4), 
+                        inset 0 0 15px rgba(255, 228, 196, 0.6);
             transition: transform 0.5s, box-shadow 0.5s;
         }
         .profil-box:hover {
             transform: scale(1.02);
-            box-shadow: 0 0 15px rgba(255, 165, 0, 0.7), 
-                        0 0 30px rgba(255, 215, 0, 0.6), 
-                        0 0 50px rgba(255, 105, 180, 0.5), 
-                        inset 0 0 15px rgba(255, 228, 196, 0.7);
+            box-shadow: 0 0 20px rgba(255, 230, 150, 0.8), 
+                        0 0 40px rgba(255, 180, 50, 0.7), 
+                        0 0 70px rgba(255, 105, 180, 0.6), 
+                        inset 0 0 20px rgba(255, 240, 210, 0.8);
         }
-        /* Updated skill badge style */
+        /* Style des badges de compétences avec un effet de dégradé animé au survol */
         .skill-badge {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 150px; /* Larger size */
-            height: 50px; /* Proportional height */
-            border-radius: 0.5rem; /* Rounded corners */
+            width: 150px;
+            height: 50px;
+            border-radius: 0.5rem;
             color: white;
             font-size: 0.875rem;
             font-weight: 500;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.5s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: relative; /* For tooltip positioning */
+            position: relative;
         }
         .skill-badge:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05); /* Augmente la taille au survol */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #FF69B4, #FF1493, #B22222, #C71585);
+            background-size: 200% 200%;
+            animation: color-shift 3s ease-in-out infinite;
         }
-        /* New custom color classes for the nuances */
-        .bg-nuance-1 { background-color: #FF4500; } /* Orange Red */
-        .bg-nuance-2 { background-color: #FF8C00; } /* Dark Orange */
-        .bg-nuance-3 { background-color: #FFD700; } /* Gold */
-        .bg-nuance-4 { background-color: #FF69B4; } /* Hot Pink */
-        .bg-nuance-5 { background-color: #FF1493; } /* Deep Pink */
         
-        /* Tooltip style */
+        /* Définition de l'animation pour le dégradé de couleur */
+        @keyframes color-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Classes de couleurs de base (statiques) pour les badges */
+        .bg-nuance-1 { background-color: #FF4500; }
+        .bg-nuance-2 { background-color: #FF8C00; }
+        .bg-nuance-3 { background-color: #FFD700; }
+        .bg-nuance-4 { background-color: #FF69B4; }
+        .bg-nuance-5 { background-color: #FF1493; }
+        
+        /* Style de la bulle d'information */
         .tooltip {
             position: absolute;
-            bottom: 110%; /* Position above the badge */
+            bottom: 110%;
             left: 50%;
             transform: translateX(-50%);
             padding: 0.5rem 0.75rem;
@@ -112,7 +124,7 @@
     <header class="bg-bleu-nuit-moyen/80 backdrop-blur-md shadow-lg sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-xl font-bold text-jaune-bronze">MMPA</div>
-            <div class="hidden md:flex space-x-8 text-base lg:text-xl font-semibold">
+            <div class="hidden md:flex space-x-8 text-lg md:text-xl lg:text-2xl font-semibold">
                 <a href="#profil" class="nav-link text-creme">Profil</a>
                 <a href="#experiences" class="nav-link text-creme">Expériences</a>
                 <a href="#competences" class="nav-link text-creme">Compétences</a>
