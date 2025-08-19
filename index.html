@@ -8,20 +8,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Bleu Nuit, Jaune Doré, Crème -->
-    <!-- Application Structure Plan: Une page unique avec une navigation fixe. La structure principale est un ensemble d'accordéons pour chaque expérience professionnelle, permettant au lecteur d'explorer le contenu sans surcharger la page. Le design est une approche moderne et numérique, utilisant des couleurs sombres avec des accents vifs pour créer un effet "bogosse". Cette architecture a été choisie pour sa clarté, son efficacité et son aspect résolument interactif. -->
-    <!-- Visualization & Content Choices: 
-        - Expériences Professionnelles -> Objectif : Rendre le CV concis et interactif. Présentation : Accordéons. Interaction : Clic pour ouvrir/fermer les détails d'un poste. Justification : Évite le défilement excessif et invite à l'exploration active.
-        - Compétences -> Objectif : Lister de manière efficace. Présentation : Liste en gras. Justification : Clarté et professionnalisme.
-        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
             background-color: #0A192F;
             color: #E6E6E6;
         }
-        .text-jaune-dore { color: #FFD700; }
-        .bg-jaune-dore { background-color: #FFD700; }
+        .text-jaune-bronze { color: #B8860B; }
+        .bg-jaune-bronze { background-color: #B8860B; }
+        .text-black-on-bronze { color: #000000; }
         .bg-bleu-nuit-moyen { background-color: #112240; }
         .text-creme { color: #F5F5DC; }
         .accordion-item-content {
@@ -33,10 +28,82 @@
             max-height: 1000px;
         }
         .nav-link {
-            transition: color 0.3s;
+            transition: color 0.3s, text-shadow 0.3s, transform 0.3s;
         }
+        /* New glow effect for nav links on hover */
         .nav-link:hover {
-            color: #FFD700;
+            color: #F5F5DC;
+            transform: scale(1.1);
+            text-shadow: 0 0 5px rgba(255, 105, 180, 0.7), 
+                         0 0 10px rgba(255, 20, 147, 0.6), 
+                         0 0 15px rgba(139, 0, 0, 0.5); 
+        }
+        /* Style for the "Profil" box with a brighter glow and hover effect */
+        .profil-box {
+            position: relative;
+            z-index: 10;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            background: #112240;
+            box-shadow: 0 0 10px rgba(255, 165, 0, 0.5), 
+                        0 0 20px rgba(255, 215, 0, 0.4), 
+                        0 0 30px rgba(255, 105, 180, 0.3), 
+                        inset 0 0 10px rgba(255, 228, 196, 0.5);
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+        .profil-box:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(255, 165, 0, 0.7), 
+                        0 0 30px rgba(255, 215, 0, 0.6), 
+                        0 0 50px rgba(255, 105, 180, 0.5), 
+                        inset 0 0 15px rgba(255, 228, 196, 0.7);
+        }
+        /* Updated skill badge style */
+        .skill-badge {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px; /* Larger size */
+            height: 50px; /* Proportional height */
+            border-radius: 0.5rem; /* Rounded corners */
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative; /* For tooltip positioning */
+        }
+        .skill-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+        /* New custom color classes for the nuances */
+        .bg-nuance-1 { background-color: #FF4500; } /* Orange Red */
+        .bg-nuance-2 { background-color: #FF8C00; } /* Dark Orange */
+        .bg-nuance-3 { background-color: #FFD700; } /* Gold */
+        .bg-nuance-4 { background-color: #FF69B4; } /* Hot Pink */
+        .bg-nuance-5 { background-color: #FF1493; } /* Deep Pink */
+        
+        /* Tooltip style */
+        .tooltip {
+            position: absolute;
+            bottom: 110%; /* Position above the badge */
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.5rem 0.75rem;
+            background-color: #334155;
+            color: #fff;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 20;
+        }
+        .skill-badge:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
         }
     </style>
 </head>
@@ -44,15 +111,15 @@
 
     <header class="bg-bleu-nuit-moyen/80 backdrop-blur-md shadow-lg sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-xl font-bold text-jaune-dore">MMPA</div>
-            <div class="hidden md:flex space-x-8">
+            <div class="text-xl font-bold text-jaune-bronze">MMPA</div>
+            <div class="hidden md:flex space-x-8 text-base lg:text-xl font-semibold">
                 <a href="#profil" class="nav-link text-creme">Profil</a>
                 <a href="#experiences" class="nav-link text-creme">Expériences</a>
                 <a href="#competences" class="nav-link text-creme">Compétences</a>
                 <a href="#formations" class="nav-link text-creme">Formations</a>
                 <a href="#complementaires" class="nav-link text-creme">À propos</a>
             </div>
-            <a href="mailto:mathilde.martine.paisley@gmail.com" class="hidden md:block bg-jaune-dore text-bleu-nuit-moyen px-4 py-2 rounded-md hover:opacity-80 transition">Contact</a>
+            <a href="mailto:mathilde.martine.paisley@gmail.com" class="hidden md:block bg-jaune-bronze text-bleu-nuit-moyen px-4 py-2 rounded-md hover:opacity-80 transition">Contact</a>
         </nav>
     </header>
 
@@ -60,7 +127,7 @@
         
         <section class="text-center py-16">
             <h1 class="text-4xl md:text-6xl font-bold text-creme">Mathilde Martine PAISLEY</h1>
-            <p class="mt-4 text-lg md:text-xl text-jaune-dore font-medium">Partenaire Stratégique RH, Paie & Transformation Digitale</p>
+            <p class="mt-4 text-lg md:text-xl text-jaune-bronze font-medium">Partenaire Stratégique RH, Paie & Transformation Digitale</p>
             <div class="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-creme text-sm">
                 <span>&#9742; 06 85 90 08 87</span>
                 <span>&#9993; mathilde.martine.paisley@gmail.com</span>
@@ -69,8 +136,8 @@
         </section>
 
         <section id="profil" class="py-16">
-            <h2 class="text-3xl font-bold text-center text-jaune-dore mb-8">Profil</h2>
-            <div class="max-w-4xl mx-auto text-creme leading-relaxed space-y-4">
+            <div class="max-w-4xl mx-auto text-creme leading-relaxed space-y-4 profil-box">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-jaune-bronze mb-6">Qui je suis et ce que je vous propose</h2>
                 <p>Forte de plus de vingt ans d’expérience en Ressources Humaines, je me positionne aujourd'hui comme une **Partenaire Stratégique RH, Paie & Transformation Digitale**.</p>
                 <p>J’accompagne les organisations dans la mise en œuvre opérationnelle et réglementaire de leurs projets, en garantissant que la paie et les enjeux RH soient pleinement intégrés par les équipes et les intégrateurs.</p>
                 <p>À la croisée du métier RH, de l'expertise réglementaire et de la transformation digitale, je crée le lien entre les différents acteurs pour sécuriser les projets. Mon objectif est d’assurer que les solutions répondent réellement aux besoins du terrain et soutiennent la performance durable des équipes.</p>
@@ -78,9 +145,9 @@
         </section>
 
         <section id="experiences" class="py-16">
-            <h2 class="text-3xl font-bold text-center text-jaune-dore mb-8">Expériences Professionnelles</h2>
+            <h2 class="text-3xl font-bold text-center text-jaune-bronze mb-8">Expériences Professionnelles</h2>
             <div class="space-y-6 max-w-4xl mx-auto">
-                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-dore transition-colors duration-300 cursor-pointer">
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-bronze transition-colors duration-300 cursor-pointer">
                     <button class="accordion-header w-full text-left">
                         <div class="flex justify-between items-center text-creme">
                             <div>
@@ -100,7 +167,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-dore transition-colors duration-300 cursor-pointer">
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-bronze transition-colors duration-300 cursor-pointer">
                     <button class="accordion-header w-full text-left">
                         <div class="flex justify-between items-center text-creme">
                             <div>
@@ -121,7 +188,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-dore transition-colors duration-300 cursor-pointer">
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-bronze transition-colors duration-300 cursor-pointer">
                     <button class="accordion-header w-full text-left">
                         <div class="flex justify-between items-center text-creme">
                             <div>
@@ -141,7 +208,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-dore transition-colors duration-300 cursor-pointer">
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-bronze transition-colors duration-300 cursor-pointer">
                     <button class="accordion-header w-full text-left">
                         <div class="flex justify-between items-center text-creme">
                             <div>
@@ -162,7 +229,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-dore transition-colors duration-300 cursor-pointer">
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-bronze transition-colors duration-300 cursor-pointer">
                     <button class="accordion-header w-full text-left">
                         <div class="flex justify-between items-center text-creme">
                             <div>
@@ -183,7 +250,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-dore transition-colors duration-300 cursor-pointer">
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-bronze transition-colors duration-300 cursor-pointer">
                     <button class="accordion-header w-full text-left">
                         <div class="flex justify-between items-center text-creme">
                             <div>
@@ -205,7 +272,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-dore transition-colors duration-300 cursor-pointer">
+                <div class="accordion-item bg-bleu-nuit-moyen p-6 rounded-lg shadow-lg border border-bleu-nuit-moyen hover:border-jaune-bronze transition-colors duration-300 cursor-pointer">
                     <button class="accordion-header w-full text-left">
                         <div class="flex justify-between items-center text-creme">
                             <div>
@@ -230,30 +297,75 @@
         </section>
 
         <section id="competences" class="py-16">
-            <h2 class="text-3xl font-bold text-center text-jaune-dore mb-8">Compétences</h2>
+            <h2 class="text-3xl font-bold text-center text-jaune-bronze mb-8">Compétences</h2>
             <div class="max-w-4xl mx-auto space-y-12">
                 <div>
-                    <h3 class="font-semibold text-lg text-jaune-dore mb-4">Outils SIRH / Paie & Gestion de Projet</h3>
-                    <div class="flex flex-wrap gap-2 text-sm">
-                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">SAP SuccessFactors</span>
-                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Pléiade e5 / For You</span>
-                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">HR Access</span>
-                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Chronotime</span>
-                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Cegid</span>
-                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Workday</span>
-                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">SAP HR</span>
-                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">ADP Décidium</span>
-                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">AS400</span>
-                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Spaietacle</span>
-                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Jira</span>
-                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Trello</span>
-                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Monday.com</span>
-                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Suite Office 365</span>
-                        <span class="bg-jaune-dore text-bleu-nuit-moyen font-medium px-3 py-1 rounded-full">Environnement Google</span>
+                    <h3 class="font-semibold text-lg text-jaune-bronze mb-4">Outils SIRH / Paie & Gestion de Projet</h3>
+                    <div class="flex flex-wrap justify-center gap-4 text-sm">
+                        <span class="skill-badge bg-nuance-1" data-skill="SAP SuccessFactors">
+                            SAP SuccessFactors
+                            <div class="tooltip">Coordinatrice SIRH</div>
+                        </span>
+                        <span class="skill-badge bg-nuance-2" data-skill="Pléiade">
+                            Pléiade
+                            <div class="tooltip">Chargée RH</div>
+                        </span>
+                        <span class="skill-badge bg-nuance-3" data-skill="HR Access">
+                            HR Access
+                            <div class="tooltip">Consultante Paie SIRH</div>
+                        </span>
+                        <span class="skill-badge bg-nuance-4" data-skill="Chronotime">
+                            Chronotime
+                            <div class="tooltip">Référente SIRH</div>
+                        </span>
+                        <span class="skill-badge bg-nuance-5" data-skill="Cegid">
+                            Cegid
+                            <div class="tooltip">Chargée RH</div>
+                        </span>
+                        <span class="skill-badge bg-nuance-1" data-skill="Workday">
+                            Workday
+                            <div class="tooltip">Gestion de Projet</div>
+                        </span>
+                        <span class="skill-badge bg-nuance-2" data-skill="SAP HR">
+                            SAP HR
+                            <div class="tooltip">Consultante Paie SIRH</div>
+                        </span>
+                        <span class="skill-badge bg-nuance-3" data-skill="ADP">
+                            ADP
+                            <div class="tooltip">Chargée de Paie</div>
+                        </span>
+                        <span class="skill-badge bg-nuance-4" data-skill="AS400">
+                            AS400
+                            <div class="tooltip">Gestion de Paie</div>
+                        </span>
+                        <span class="skill-badge bg-nuance-5" data-skill="Spaietacle">
+                            Spaietacle
+                            <div class="tooltip">Gestion de Paie</div>
+                        </span>
+                        <span class="skill-badge bg-nuance-1" data-skill="Jira">
+                            Jira
+                            <div class="tooltip">Gestion de Projet</div>
+                        </span>
+                        <span class="skill-badge bg-nuance-2" data-skill="Trello">
+                            Trello
+                            <div class="tooltip">Gestion de Projet</div>
+                        </span>
+                        <span class="skill-badge bg-nuance-3" data-skill="Monday.com">
+                            Monday.com
+                            <div class="tooltip">Gestion de Projet</div>
+                        </span>
+                        <span class="skill-badge bg-nuance-4" data-skill="Suite Office 365">
+                            Suite Office 365
+                            <div class="tooltip">Utilisation Quotidienne</div>
+                        </span>
+                        <span class="skill-badge bg-nuance-5" data-skill="Google">
+                            Google
+                            <div class="tooltip">Utilisation Quotidienne</div>
+                        </span>
                     </div>
                 </div>
                 <div>
-                    <h3 class="font-semibold text-lg text-jaune-dore mb-4">Compétences Transversales</h3>
+                    <h3 class="font-semibold text-lg text-jaune-bronze mb-4">Compétences Transversales</h3>
                     <ul class="list-disc list-inside text-creme space-y-2">
                         <li>**Gestion de projet :** Recette, Mise en production, Support utilisateurs, Animation d’ateliers, Conduite du changement.</li>
                         <li>**Pilotage RH :** Coordination d'équipes multisites, Optimisation des processus, Gestion de la relation client/prestataire, Veille sociale et juridique.</li>
@@ -263,7 +375,7 @@
         </section>
 
         <section id="formations" class="py-16">
-            <h2 class="text-3xl font-bold text-center text-jaune-dore mb-8">Formations & Certifications</h2>
+            <h2 class="text-3xl font-bold text-center text-jaune-bronze mb-8">Formations & Certifications</h2>
             <div class="max-w-3xl mx-auto space-y-6">
                 <div class="bg-bleu-nuit-moyen p-6 rounded-lg shadow-md border border-bleu-nuit-moyen">
                     <h3 class="font-semibold text-creme">Titre certifié "Expert en Stratégie Digitale" (Niveau 7)</h3>
@@ -278,13 +390,14 @@
                     <p class="text-sm text-creme opacity-70">2013-2014 - M2i Paris</p>
                 </div>
             </div>
+        </div>
         </section>
         
         <section id="complementaires" class="py-16">
-            <h2 class="text-3xl font-bold text-center text-jaune-dore mb-8">Informations Complémentaires</h2>
+            <h2 class="text-3xl font-bold text-center text-jaune-bronze mb-8">Informations Complémentaires</h2>
             <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10">
                 <div class="bg-bleu-nuit-moyen p-8 rounded-lg shadow-lg border border-bleu-nuit-moyen">
-                    <h3 class="font-semibold text-lg text-jaune-dore mb-4">Langues & Passions</h3>
+                    <h3 class="font-semibold text-lg text-jaune-bronze mb-4">Langues & Passions</h3>
                     <div class="space-y-3 text-creme">
                         <p class="mb-2"><strong class="text-creme">Langues :</strong> Français (langue maternelle), Anglais (A2 - compréhension technique).</p>
                         <p>&#127850; <span class="font-medium">Création Gourmande :</span> Organisation d'événements (traiteur, amuse-bouches) et pâtisserie spécialisée.</p>
@@ -309,6 +422,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Smooth scrolling for navigation links
             const navLinks = document.querySelectorAll('a[href^="#"]');
             navLinks.forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
@@ -319,6 +433,7 @@
                 });
             });
 
+            // Accordion functionality for experience details
             const accordionItems = document.querySelectorAll('.accordion-item');
             accordionItems.forEach(item => {
                 const header = item.querySelector('.accordion-header');
